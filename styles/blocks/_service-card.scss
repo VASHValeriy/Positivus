@@ -1,0 +1,129 @@
+@use '../mixins';
+@use '../media';
+
+.service-card {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+    min-height: 310px;
+    padding: 50px;
+    background-color: var(--color-gray);
+    border: var(--border-black);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow);
+
+    @include media.mobile {
+        display: grid;
+        grid-template-columns: 1fr 1fr; // Две равные колонки
+        grid-template-rows: auto auto; // Два ряда
+        row-gap: 27px;
+    }
+
+    @include media.mobile-s {
+        display: grid;
+        grid-template-rows: auto auto; // Два ряда
+    }
+
+    &--accent-bg {
+        background-color: var(--color-green);
+    }
+
+    &--dark-bg {
+        background-color: var(--color-dark);
+    }
+
+    &__body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 30px;
+
+        @include media.mobile {
+            display: contents;
+        }
+        @include media.mobile-s {
+            display: contents;
+        }
+    }
+
+    &__image {
+        align-self: center;
+
+        @include media.desktop {
+            max-width: 50%;
+            height: auto;
+        }
+
+        
+        @include media.mobile {
+            grid-column: 2 / 3; // Правая колонка
+            grid-row: 2 / 3;   // Занимает оба ряда
+            align-self: center; // Выравнивание
+            max-width: 100%;
+        }
+        
+        @include media.mobile-s {
+            max-width: 165px;
+          }
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+
+        @include media.mobile-s {
+            grid-column: -1 / 1;
+            order: 1;
+          }
+    }
+
+    &__link {
+        --serviceCardLinkIconColor: var(--color-green);
+
+        display: inline-flex;
+        align-items: center;
+        column-gap: 15px;
+        font-size: 20px;
+
+        
+        @include media.mobile {
+            align-self: end;
+            grid-column: 1 / 2; // Левая колонка
+            grid-row: 2 / 3;   // Второй ряд
+        }
+        
+        &--light {
+            --serviceCardLinkIconColor: var(--color-dark);
+            
+            color: var(--color-light);
+        }
+        
+        &-icon-wrapper {
+            @include mixins.flex-center;
+            @include mixins.square(41px);
+            
+            background-color: currentColor;
+            border-radius: 50%;
+            
+            svg {
+                color: var(--serviceCardLinkIconColor);
+            }
+        }
+        
+        &-icon-label {
+            @include media.mobile-s {
+                @include mixins.visually-hidden;
+            }
+        }
+        
+        
+
+        @include mixins.smoothRotate(0deg, 29deg, 0.5s);  /* Применяем миксин с параметрами */
+          
+        svg {
+            transform: rotate(0deg);  /* Исходное положение */
+            transition: transform 0.5s ease;  /* Плавный переход */
+        }
+    }
+}

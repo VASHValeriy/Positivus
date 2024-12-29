@@ -1,0 +1,25 @@
+@use '../mixins';
+@use '../media';
+
+.burger-button {
+    @include mixins.reset-button;
+    @include mixins.square(48px);
+
+    position: relative;
+    border-radius: var(--border-radius-small);
+
+    @include media.hover{
+        background-color: var(--color-green);
+    }
+
+    &::after {
+        @include mixins.abs-center;
+
+        content: '';
+        width: 50%;
+        height: 2px;
+        background-color: var(--color-dark);
+        border-radius: 5px;
+        box-shadow: 0 -8px, 0 8px; // Какая-то странная шляпа, но мы при помощи box-shadow сделали 2 доп полоски для бургер меню
+    }
+}
