@@ -1,0 +1,132 @@
+@use '../mixins';
+@use '../media';
+
+.process {
+
+  &__list {
+    display:flex;
+    flex-direction:column;
+    row-gap:30px;
+    counter-reset:custom-counter;
+    list-style:none;
+
+    @include media.mobile {
+      row-gap: 20px;
+    }
+  }
+
+  &__item {
+    --counterContent: counter(custom-counter);
+
+    counter-increment: custom-counter;
+
+    &:nth-child(-n + 9) {
+      --counterContent: '0' counter(custom-counter);
+    }
+  }
+
+
+  &__accordion {
+
+    padding:40px 60px;
+    border:var(--border-black);
+    border-radius:var(--border-radius-large);
+    background-color:var(--color-gray);
+    box-shadow:var(--shadow);
+    transition-duration:var(--transition-duration);
+
+    @include media.hover {
+      background-color:var(--color-green);
+    }
+
+    @include media.mobile {
+      padding: 30px;
+    }
+
+    &[open] {
+      background-color:var(--color-green);
+
+      .process__accordion-indicator::after {
+        rotate: 0deg;
+      }
+    }
+
+    &-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      column-gap:50px;
+      cursor:pointer;
+      user-select:none;
+
+      @include media.mobile {
+        column-gap: 28px;
+      }
+    }
+
+    &-title {
+
+      @include mixins.fluid-text(30,18);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      column-gap:25px;
+
+
+      @include media.mobile {
+        column-gap: 33px;
+      }
+
+      &::before {
+        content: var(--counterContent);
+        font-size: 2em;
+
+        @include media.mobile {
+          font-size: 30px;
+        }
+      }
+      
+    }
+
+    &-indicator {
+      @include mixins.flex-center;
+      @include mixins.square(58px);
+
+      position:relative;
+      border:var(--border-black);
+      border-radius:50%;
+      background-color:var(--color-gray);
+      flex-shrink: 0;
+
+      @include media.mobile {
+      width: 30px;
+      }
+
+      &::before, &::after {
+        @include mixins.abs-center;
+        
+        
+        content:'';
+        width: 45%;
+        height: 10%;
+        background-color: var(--color-dark);
+      }
+
+      &::after {
+        rotate: 90deg;
+        transition-duration: var(--transition-duration);
+        
+      }
+    }
+    
+
+    &-body {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: var(--border-black);
+    }
+    
+  }
+  
+}

@@ -1,0 +1,163 @@
+@use '../mixins';
+@use '../media';
+
+.footer {
+
+    @include media.mobile {
+        padding-inline: 0;
+
+    }
+
+
+    &__inner {
+        padding: 55px 60px 50px;
+        color: var(--color-light);
+        background-color: var(--color-dark);
+
+        @include media.mobile-above {
+            border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+        }
+        @include media.mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 37px;
+            padding: 50px var(--container-padding-x) 30px;
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 30px;
+
+        @include media.tablet {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 37px;
+        }
+
+        @include media.mobile {
+            display: contents;
+            position: relative;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 66px;
+        }
+    }
+
+    &__menu {
+        &-list {
+            display: flex;
+            align-items: center;
+            column-gap: 40px;
+
+            @include media.mobile {
+                flex-direction: column;
+                row-gap: 15px;
+            }
+        }
+
+        &-link {
+            display: inline-flex;
+            align-items: center;
+            height: 30px;
+            text-decoration: underline;
+
+            @include media.hover {
+                color: var(--color-green);
+            }
+        }
+    }
+
+    &__soc1als {
+        @include media.mobile {
+            order: 1;
+        }
+    }
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 50px;
+
+        
+
+        @include media.mobile-above {
+            &:not(:last-child) {
+                margin-bottom: 50px;
+                padding-bottom: 50px;
+                border-bottom: 1px solid currentColor;
+                // currentColor: Это ссылка на текущий цвет текста (color) элемента.
+                // Применяется, чтобы сделать другие части элемента (например, границы, тени, фон) такого же цвета, как текст.
+                //Работает только с цветом.
+            }
+        }
+
+        @include media.mobile {
+            flex-direction: column;
+            align-items: center;
+            row-gap: inherit;
+        }
+
+        @include media.mobile-s {
+            width: 100%;
+        }
+
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        row-gap: 27px;
+
+        @include media.mobile {
+            align-items: center;
+            text-align: center;
+        }
+
+        &-title {
+            color: var(--color-dark);
+        }
+
+        &-body {
+            font-style: normal;
+
+            p {
+                --paragraphMarginBottom: 20px;
+            }
+
+            a {
+                @include media.hover {
+                    color: var(--color-green);
+                }
+            }
+        }
+    }
+
+    &__extra {
+        display: flex;
+        column-gap: 40px;
+
+        @include media.mobile {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 15px;
+            order: 2;
+            width: 100%;
+            padding-top: 37px;
+            border-top: 1px solid currentColor;
+        }
+    }
+
+    &__privacy-policy-link {
+        text-decoration: underline;
+
+        @include media.hover {
+            color: var(--color-green);
+        }
+    }
+}

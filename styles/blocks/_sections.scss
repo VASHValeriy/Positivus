@@ -1,0 +1,43 @@
+@use '../mixins';
+@use '../media';
+
+.section {
+    padding-block: var(--section-padding-y);
+
+    &__body {
+    position: relative;
+
+    }
+    &--hidden-x {
+        overflow-x: hidden;
+    }
+
+    &__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 40px;
+
+        &:not(:last-child) {
+            margin-bottom: 80px;
+        }
+
+        @include media.mobile {
+            flex-direction: column;
+            text-align: center;
+            row-gap: 30px;
+
+
+            &:not(:last-child) {
+                margin-bottom: 40px;
+            }
+    
+        }
+    }
+
+    &__description{
+        max-width: 580px;
+    }
+
+
+}

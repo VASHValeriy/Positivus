@@ -1,0 +1,30 @@
+@use '../mixins';
+@use '../media';
+
+.subscribe-form {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    padding: 58px 40px;
+    background-color: var(--color-dark-alt);
+    border-radius: var(--border-radius-large);
+
+    @include media.desktop {
+        flex-direction: column;
+        row-gap: 22px;
+        width: 100%;
+        max-width: 450px;
+        padding: 30px;
+    }
+
+    &__field,
+    &__button {
+        @include media.mobile-s {
+            width: 100%;
+            max-width: 470px;
+        }
+    }
+
+
+
+}

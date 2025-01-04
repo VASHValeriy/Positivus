@@ -1,0 +1,41 @@
+@use '../mixins';
+@use '../media';
+
+.radio {
+    display: flex;
+    align-items: center;
+    column-gap: 14px;
+    transition-duration: var(--transition-duration);
+
+    @include media.hover {
+        opacity: 0.6;
+    }
+
+    &__input {
+        &:not(:checked) + .radio__emulator::after {
+            opacity: 0;
+        }
+    }
+
+    &__emulator {
+        @include mixins.flex-center;
+        @include mixins.square(28px);
+
+        position: relative;
+        background-color: var(--color-light);
+        border: var(--border-black);
+        border-radius: 50%;
+
+        &::after {
+            @include mixins.abs-center;
+            @include mixins.square(60%);
+
+
+            content: '';
+            position: absolute;
+            background-color: var(--color-green);
+            border-radius: inherit;
+            transition-duration: var(--transition-duration);
+        }
+    }
+}

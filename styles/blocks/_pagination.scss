@@ -1,0 +1,31 @@
+@use '../mixins';
+@use '../media';
+
+.pagination {
+    &__list {
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+
+        transition: transform 0.3s ease; /* Плавная анимация */
+        will-change: transform; /* Оптимизация рендера */
+    }
+
+    &__button {
+        @include mixins.reset-button;
+        @include mixins.flex-center;
+        @include mixins.square(24px);
+
+        color: var(--color-light);
+
+        @include media.hover {
+            color: var(--color-green);
+        }
+
+        
+    }
+}
+
+.is-current {
+    color: var(--color-green);
+}

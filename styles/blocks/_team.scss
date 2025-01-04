@@ -1,0 +1,17 @@
+@use '../mixins';
+@use '../media';
+
+.team {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  
+    &__button {
+      align-self: end;
+      min-width: 269px;
+  
+      @include media.mobile-s {
+        width: 100%;
+      }
+    }
+  }

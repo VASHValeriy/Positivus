@@ -1,0 +1,75 @@
+@use '../mixins';
+@use '../media';
+
+.contact-us {
+    position: relative;
+    overflow-x: hidden;
+
+    @include media.mobile-above {
+        padding: 60px 100px 80px;
+        background-color: var(--color-gray);
+        border-radius: var(--border-radius-large);
+    }
+
+    &::after {
+        --contactUsImageOffsetY: 62px;
+        
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        translate: -50% -50%;
+        width: 700px;
+        height: calc(100% - var(--bannerImageOffsetY) * 2);
+        aspect-ratio: 1;    // Свойство aspect-ratio в CSS задает соотношение сторон элемента (ширина к высоте). Когда вы используете aspect-ratio: 1, это означает, что элемент будет сохранять квадратное соотношение сторон, то есть ширина всегда будет равна высоте.
+        background: url(/2.Frontend/positivus_LEARN_SCSS/images/svg/contactsUsImg.svg) center/contain no-repeat;
+
+        @include media.tablet {
+            display: none;
+        }
+    }
+
+    &__form,
+    &__body{ 
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__request-types,
+    &__body {
+        @include media.mobile {
+            background-color: var(--color-gray);
+        }
+    }
+
+    &__request-types {
+        @include media.mobile {
+            padding: 40px 52px 36px;
+            border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+        }
+    }
+
+
+    &__form {
+
+        @include media.tablet-above {
+            max-width: 556px;
+        }
+
+        @include media.mobile-above {
+            row-gap: 40px;
+        }
+    }
+
+    &__body {
+        row-gap: 25px;
+
+        @include media.mobile {
+        margin-bottom: 30px;
+         padding: 10px 30px 50px;
+         border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+        }
+    }
+
+
+}

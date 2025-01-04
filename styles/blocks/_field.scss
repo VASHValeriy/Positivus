@@ -1,0 +1,65 @@
+@use '../mixins';
+@use '../media';
+
+.field {
+    --fieldInputHeight: var(--input-height);
+    --fieldInputTextColor: var(--color-dark);
+    --fieldInputBgColor: var(--color-light);
+    --fieldInputBorderColor: var(--color-dark);
+    --fieldInputPlaceholderColor: var(--color-dark-alt);
+    --fieldInputHoverColor: var(--color-green);
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 5px;
+
+    &--big-height {
+        --fieldInputHeight: var(--button-height)
+    }
+
+    &--dark-bg {
+        --fieldInputTextColor: var(--color-green);
+        --fieldInputBgColor: var(--color-dark-alt);
+        --fieldInputBorderColor: var(--color-light);
+        --fieldInputPlaceholderColor: var(--color-light);
+        --fieldInputHoverColor: var(--color-dark);
+    }
+
+    &__label{
+        @include mixins.fluid-text(16,14);
+    }
+
+    &__input {
+        width: 100%;
+        height: var(--fieldInputHeight);
+        padding-inline: 30px;
+        color: var(--fieldInputTextColor);
+        background-color: var(--fieldInputBgColor);
+        border: 1px solid var(--color-light);
+        border-radius: var(--border-radius);
+
+        @include media.hover {
+            background-color: var(--fieldInputHoverColor);
+        }
+
+        @include media.mobile {
+            padding-inline: 20px;
+        }
+
+        &:focus {
+            border-color: var(--color-green);
+            outline: none;
+        }
+
+        &::placeholder {
+            color: var(--fieldInputPlaceholderColor);
+        }
+
+        &--textarea {
+            height: 190px;
+            padding: 18px;
+            resize: none;
+        }
+    }
+}
